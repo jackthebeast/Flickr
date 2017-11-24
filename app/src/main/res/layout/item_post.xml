@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
             name="post"
             type="it.jgrassi.flickr.model.Post" />
     </data>
@@ -14,6 +17,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="@{clickListener::onClick}"
         android:background="?android:attr/selectableItemBackground">
 
         <ImageView
@@ -26,7 +30,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:transitionName="@string/transition_image"/>
 
         <TextView
             android:id="@+id/post_title"

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="it.jgrassi.flickr.viewmodel.DetailViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/detail_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
+
+
+        <ImageView
+            android:id="@+id/detail_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            detailSource="@{viewModel.detailUrl}"
+            android:transitionName="@string/transition_image"/>
+
+        <ScrollView
+            android:id="@+id/detail_scroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.post.title}"
+                    style="@style/shadow_text"
+                    android:textColor="@color/light_grey"
+                    tools:text="title" />
+
+                <TextView
+                    android:id="@+id/detail_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{`by ` + viewModel.post.authorName}"
+                    android:textColor="@color/light_grey"
+                    style="@style/shadow_text"
+                    tools:text="author" />
+
+                <TextView
+                    android:id="@+id/detail_taken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{`taken: ` + viewModel.post.takenFormatted}"
+                    android:textColor="@color/light_grey"
+                    style="@style/shadow_text"
+                    tools:text="taken" />
+
+                <TextView
+                    android:id="@+id/detail_published"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{`published: ` + viewModel.post.publishedFormatted}"
+                    android:textColor="@color/light_grey"
+                    style="@style/shadow_text"
+                    tools:text="published" />
+
+                <TextView
+                    android:id="@+id/detail_tags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{`tags: ` + viewModel.post.tags}"
+                    android:textColor="@color/light_grey"
+                    style="@style/shadow_text"
+                    tools:text="tags" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

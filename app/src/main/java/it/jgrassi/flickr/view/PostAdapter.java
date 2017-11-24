@@ -2,6 +2,7 @@ package it.jgrassi.flickr.view;
 
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     private List<Post> list;
 
 
-    public static class PostViewHolder extends RecyclerView.ViewHolder{
+    public static class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         final ItemPostBinding binding;
 
         public PostViewHolder(ItemPostBinding binding){
@@ -33,7 +34,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         }
 
         public void bindPost(Post post){
+            binding.setClickListener(this);
             binding.setPost(post);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Pair<View, String> image = new Pair<>(view.findViewById(R.id.post_thumbnail),view.getContext().getResources().getString(R.string.transition_image));
+            DetailActivity.launchDetail(view.getContext(), binding.getPost(), image);
         }
 
         @BindingAdapter({"thumbnailSource"})
